@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node (if attendees use squeezr-ai)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# ai-engineering runtime (gitignored per upstream defaults)
+.ai-engineering/runtime/
+.ai-engineering/state/state.db
+
+# Workshop scratch
+scratch/
+*.local.md
