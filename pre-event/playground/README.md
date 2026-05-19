@@ -45,5 +45,5 @@ El objetivo no es construir algo grande. El objetivo es entender la cadena:
 | 6 | [Revisa](06-review.md) | `/ai-review` | 5 min |
 | 7 | [Entiende lo cambiado](07-explain.md) | `/ai-explain` | 2 min |
 
-> **Nota pre-evento:** esto es práctica. El workshop real del 25 de mayo usará problemas de proyecto preparados.
+> **Nota pre-evento:** esto es solo práctica para comprobar tu entorno antes del workshop.
 

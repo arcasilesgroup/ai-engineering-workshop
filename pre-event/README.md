@@ -42,4 +42,4 @@ Si todo eso funciona, estás listo para el evento. Los pasos opcionales mejoran 
 
 ## Playground opcional
 
-El material que antes vivía en `workshop/` está ahora en [`playground/`](playground/). Es una práctica controlada de 45 minutos sobre la carpeta/proyecto de prueba que tú elijas. Te sirve para aprender la cadena de ai-engineering antes de aplicarla a problemas reales el día del evento.
+[`playground/`](playground/) es una práctica corta para comprobar que `ai-eng`, tu IDE/agente y los comandos básicos funcionan antes del evento.
