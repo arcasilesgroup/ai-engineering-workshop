@@ -46,15 +46,9 @@ Y en tu IDE de IA, abierto con esa misma carpeta como raíz, el comando:
 
 Tiene que mostrar el dashboard de ai-engineering sin errores.
 
-## Por qué hay un playground en el pre-evento
+## Playground opcional
 
-El material que antes estaba en `workshop/` ahora vive en [`pre-event/playground/`](pre-event/playground/). Úsalo para practicar la cadena canónica:
-
-```text
-/ai-start → /ai-explore → /ai-brainstorm → /ai-plan → /ai-build → /ai-pr → /ai-review → /ai-explain
-```
-
-El workshop real del 25 de mayo no será este playground. Será una sesión con problemas reales de proyecto y un reto final basado en **La Batalla de las IAs**.
+[`pre-event/playground/`](pre-event/playground/) es una práctica corta para comprobar que tu entorno y tu agente funcionan antes del evento. El material completo del workshop se publicará el **25 de mayo de 2026**.
 
 ## Qué es ai-engineering
 
