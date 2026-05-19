@@ -1,108 +1,72 @@
-# 4. Context7 — live library docs MCP (optional)
+# 4. Context7 — documentación actualizada vía MCP (opcional)
 
-> **Time:** ~3 minutes • **Required:** No • **Works with:** Claude Code, OpenAI Codex, Cursor
+> **Tiempo:** ~3 minutos • **Obligatorio:** no • **Oficial:** [Context7 docs](https://context7.com/docs)
 
-Your model has a training cutoff. Real library APIs change after that cutoff. **Context7** is an MCP server that fetches current, version-accurate documentation on demand — for React, Next.js, Prisma, Express, Tailwind, Django, Spring Boot, FastAPI, and thousands of other libraries.
+Context7 permite que tu agente consulte documentación actual de librerías, SDKs y CLIs antes de responder. Es útil para evitar respuestas obsoletas sobre APIs que cambian rápido.
 
-When wired correctly, your IDE will call Context7 automatically whenever you ask about a library, *before* answering from training data.
+Instalación oficial: <https://context7.com/docs/installation>
 
----
+## Ruta recomendada — setup automático
 
-## Pros
-
-- **No more "confident but wrong" library answers.** API renames, deprecated flags, new options — Context7 reads the current docs.
-- **Trimmed snippets, not full docs.** The server returns only the relevant section, so token cost stays low.
-- **Passive activation.** Once the rule file is in place, your IDE invokes it without you typing anything.
-- **Multi-IDE.** Works with Claude Code, Codex (via `~/.codex/config.toml`), and Cursor (via `.cursor/mcp.json`).
-
----
-
-## Install for Claude Code
+La forma más fácil es usar el CLI oficial `ctx7`:
 
 ```bash
-claude mcp add --transport http context7 https://mcp.context7.com/mcp
+npx ctx7 setup
 ```
 
-That is it. The MCP is now configured at the user level (works in every project).
+Cuando pregunte:
 
-> If you are using the Claude Code plugin marketplace, you can also install Context7 via `/plugins` → search "context7" → install. Either path works; the marketplace install just writes the same MCP entry.
+1. **How should your agent access Context7?** → elige **MCP server**.
+2. **Which agents do you want to set up?** → selecciona los que uses: Claude Code, Cursor, OpenCode, Codex, Gemini CLI.
+3. Se abrirá el navegador para login. Completa OAuth.
+4. Espera a ver `Context7 setup complete`.
 
----
+El setup automático configura, según los agentes seleccionados:
 
-## Install for OpenAI Codex
+- Servidor MCP con API key.
+- Regla de auto-invocación para usar Context7 cuando preguntes por librerías, SDKs, APIs, CLIs o servicios cloud.
+- Skill/contexto local de Context7 para el agente.
 
-Edit `~/.codex/config.toml`:
+Ejemplo de archivos que puede tocar:
 
-```toml
-[mcp_servers.context7]
-url = "https://mcp.context7.com/mcp"
-transport = "http"
+| Agente | Configuración típica |
+|---|---|
+| Claude Code | `~/.claude.json`, `~/.claude/rules/context7.md`, `~/.claude/skills/context7-mcp/` |
+| Cursor | `~/.cursor/mcp.json`, `~/.cursor/rules/context7.mdc`, `~/.cursor/skills/context7-mcp/` |
+| OpenCode | `~/.config/opencode/opencode.json`, `~/.config/opencode/AGENTS.md` |
+| Codex | `~/.codex/config.toml`, `~/.codex/AGENTS.md` |
+| Gemini CLI | `~/.gemini/settings.json`, `~/.gemini/GEMINI.md` |
+
+## Setup para un solo agente
+
+Si no quieres configurar todos, puedes apuntar a uno concreto:
+
+```bash
+npx ctx7 setup --claude
+npx ctx7 setup --cursor
+npx ctx7 setup --opencode
 ```
 
----
+## Verificar
 
-## Install for Cursor
+Reinicia el agente y pregunta algo de una librería concreta, por ejemplo:
 
-Edit `.cursor/mcp.json` in your project root (or `~/.cursor/mcp.json` for user-wide):
-
-```json
-{
-  "mcpServers": {
-    "context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "transport": "http"
-    }
-  }
-}
+```text
+What is the current uv command to install a tool from a GitHub repository?
 ```
 
----
+Deberías ver llamadas a `resolve-library-id` y `query-docs` antes de la respuesta, o una indicación clara de que Context7 está usando documentación actual.
 
-## Auto-invocation rule (Claude Code)
+## Desinstalar
 
-For the IDE to call Context7 *automatically* when you ask about a library — without you typing the MCP tool name — drop this into `~/.claude/rules/context7.md`:
+Si necesitas revertir la configuración:
 
-```markdown
-Use Context7 MCP to fetch current documentation whenever the user asks about
-a library, framework, SDK, API, CLI tool, or cloud service — even well-known
-ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot.
-
-Steps:
-1. Call `resolve-library-id` with the library name.
-2. Call `query-docs` with the chosen ID and the user's full question.
-3. Answer using the fetched docs.
-
-Do not use for: refactoring, writing scripts from scratch, debugging business
-logic, code review, or general programming concepts.
+```bash
+npx ctx7 remove
 ```
 
-For Codex and Cursor, equivalent rules live in their own rules/instructions files.
+## Siguiente
 
----
-
-## Verify
-
-Restart your IDE. In a fresh session, ask something library-specific:
-
-> "What is the latest API for streaming responses in the Anthropic SDK?"
-
-You should see the IDE call `mcp__context7__resolve-library-id` followed by `mcp__context7__query-docs` before answering.
-
-If it does not, double-check:
-
-1. The MCP was added (`claude mcp list` should show `context7`).
-2. The rule file exists at `~/.claude/rules/context7.md`.
-3. You restarted the IDE (MCPs are loaded at start).
-
----
-
-## Cost
-
-Context7 hosted is free for individual use at the time of writing. Check <https://context7.com/> for current limits and any paid tiers.
-
----
-
-## Next
-
-- [The workshop](../workshop/) — you are ready.
-- [Troubleshooting](99-troubleshooting.md) if anything from steps 1–4 is not working.
+- [5. AgentsView](05-agentsview-optional.md)
+- [Playground pre-evento](playground/)
+- [Troubleshooting](99-troubleshooting.md)

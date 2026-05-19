@@ -1,39 +1,45 @@
-# Pre-Event Setup
+# Pre-event setup
 
-> Do this **the week before the workshop**, not the morning of.
+> Haz esto antes del workshop, no el mismo día. El objetivo es que el **25 de mayo de 2026** llegues con `ai-eng`, tu IDE y una carpeta de prueba ya verificados.
 
-We have 45 minutes to teach the framework. We do not have 45 minutes to debug Python, fix `PATH`, or chase a missing `uv`. Arrive with `ai-eng` working and you will get the most out of the session.
+## Orden recomendado
 
-## Order
+| # | Paso | Obligatorio | Tiempo |
+|---|---|---:|---:|
+| 0 | [Enlaces oficiales de herramientas](00-official-tooling-links.md) | Recomendado | 5 min |
+| 1 | [Instalar y verificar ai-engineering](01-install-ai-engineering.md) | **Sí** | 15 min |
+| 2 | [Engram — memoria entre sesiones](02-engram-optional.md) | No | 5 min |
+| 3 | [RTK — ahorro de tokens en comandos](03-rtk-optional.md) | No | 5 min |
+| 4 | [Context7 — docs actuales](04-context7-optional.md) | No | 3 min |
+| 5 | [AgentsView — visor local de sesiones](05-agentsview-optional.md) | No | 5–10 min |
+| 6 | [Playground pre-evento](playground/) | No | 45 min |
+| ★ | [Troubleshooting](99-troubleshooting.md) | Referencia | según necesidad |
 
-| # | Step | Required? | Time |
-|---|------|-----------|------|
-| 1 | [Install ai-engineering](01-install-ai-engineering.md) | **Yes** | 10 min |
-| 2 | [Engram (cross-session memory)](02-engram-optional.md) | Optional | 5 min |
-| 3 | [RTK + Squeezr (token savings)](03-rtk-squeezr-optional.md) | Optional | 10 min |
-| 4 | [Context7 (live library docs)](04-context7-optional.md) | Optional | 3 min |
-| ★ | [Troubleshooting](99-troubleshooting.md) | reference | as needed |
+## Qué necesitas
 
-## What you need
+- macOS, Linux o Windows. `ai-engineering` está pensado para funcionar cross-OS; usa la terminal normal de tu sistema.
+- Git y GitHub CLI (`gh auth status` funcionando).
+- Un IDE/agente de IA. El evento usará **Claude Code** como ruta principal; también funcionan OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode, Cursor y Antigravity.
+- `uv` para instalar `ai-eng` y las herramientas Python necesarias.
+- Una cuenta de GitHub capaz de crear forks y PRs.
 
-- **macOS, Linux, or Windows (WSL2 recommended on Windows).**
-- **Git** + **GitHub CLI** (`gh auth login` working).
-- **An AI coding IDE.** Workshop uses **Claude Code** as primary; GitHub Copilot, OpenAI Codex, Gemini CLI, OpenCode, and Cursor all work too — just substitute the slash command surface.
-- **Python 3.11+** and **uv** (we will install these in step 1 if missing).
-- **A free GitHub account** that can push to public repos.
+## Comprobación de confianza
 
-## Confidence check
-
-After completing step 1, you should be able to run this from a fresh terminal and get a non-error response:
+Después del paso 1, entra en la carpeta donde hayas ejecutado `ai-eng install` y comprueba:
 
 ```bash
 ai-eng version
+ai-eng doctor
 ```
 
-Expected output (version number may differ):
+En tu IDE de IA, abierto dentro de esa misma carpeta:
 
-```
-ai-eng 0.4.0
+```text
+/ai-start
 ```
 
-If that works, you are ready. The optional steps add quality-of-life upgrades but the workshop runs fine without them.
+Si todo eso funciona, estás listo para el evento. Los pasos opcionales mejoran la experiencia, pero no bloquean el workshop.
+
+## Playground opcional
+
+El material que antes vivía en `workshop/` está ahora en [`playground/`](playground/). Es una práctica controlada de 45 minutos sobre la carpeta/proyecto de prueba que tú elijas. Te sirve para aprender la cadena de ai-engineering antes de aplicarla a problemas reales el día del evento.

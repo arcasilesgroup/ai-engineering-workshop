@@ -28,3 +28,6 @@ Thumbs.db
 # Workshop scratch
 scratch/
 *.local.md
+
+# Embargoed workshop drafts (publish manually on 2026-05-25)
+workshop/_private/
