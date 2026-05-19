@@ -1,68 +1,69 @@
 # ai-engineering Workshop
 
-> 45-minute hands-on workshop that takes you from zero to a merged PR through the canonical AI-governed chain: `/ai-start → /ai-brainstorm → /ai-plan → /ai-build → /ai-pr`.
+> Preparación pública del evento de **ai-engineering**. Hasta el **lunes 25 de mayo de 2026** este repositorio solo debe enseñar el **pre-evento**: instalación, verificación y un playground opcional para llegar con el entorno funcionando.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![ai-engineering](https://img.shields.io/badge/built%20on-ai--engineering-7c3aed.svg)](https://github.com/arcasilesgroup/ai-engineering)
 
-## What you will learn
+## Estado de publicación
 
-By the end of the 45-minute session you will have:
+| Fecha | Qué está publicado | Qué no está publicado todavía |
+|---|---|---|
+| Ahora → 24 mayo 2026 | Pre-evento + playground de práctica | Casos reales del workshop |
+| 25 mayo 2026 | Workshop completo con proyectos reales | — |
 
-- Installed and verified `ai-engineering` on your laptop.
-- Bootstrapped a fresh project as a governed AI workspace.
-- Driven a real feature through `/ai-brainstorm → /ai-plan → /ai-build → /ai-pr`.
-- Watched a parallel multi-specialist code review run via `/ai-review`.
-- Used `/ai-explain` to learn what the framework just built.
+El directorio [`workshop/`](workshop/) queda como placeholder público hasta el día del evento. Los materiales reales se publicarán el **25 de mayo de 2026**.
 
-This is *not* a slideshow. You will be typing.
+## Qué tienes que hacer antes del evento
 
-## Two parts to this repo
+Completa [`pre-event/`](pre-event/) en orden:
 
-### 1. [Pre-event setup](pre-event/) — do this 1 week before the workshop
+| # | Paso | Tiempo | Obligatorio |
+|---|---|---:|---|
+| 0 | [Enlaces oficiales de herramientas](pre-event/00-official-tooling-links.md) | 5 min | Recomendado |
+| 1 | [Instalar y verificar ai-engineering](pre-event/01-install-ai-engineering.md) | 15 min | **Sí** |
+| 2 | [Engram: memoria entre sesiones](pre-event/02-engram-optional.md) | 5 min | Opcional |
+| 3 | [RTK: ahorro de tokens en comandos](pre-event/03-rtk-optional.md) | 5 min | Opcional |
+| 4 | [Context7: documentación actualizada](pre-event/04-context7-optional.md) | 3 min | Opcional |
+| 5 | [AgentsView: visor local de sesiones](pre-event/05-agentsview-optional.md) | 5–10 min | Opcional |
+| 6 | [Playground pre-evento](pre-event/playground/) | 45 min | Opcional |
+| ★ | [Troubleshooting](pre-event/99-troubleshooting.md) | según necesidad | Referencia |
 
-Arrive with `ai-eng` working on your laptop. We will not debug Python or `uv` together during the workshop — there is not enough time. Optional helper tools (Engram, RTK, Squeezr, Context7) are documented separately so you can pick what fits you.
+### Finish line del pre-evento
 
-| Step | Time | Required? |
-|------|------|-----------|
-| [1. Install ai-engineering](pre-event/01-install-ai-engineering.md) | 10 min | **Yes** |
-| [2. Engram (cross-session memory)](pre-event/02-engram-optional.md) | 5 min | Optional |
-| [3. RTK + Squeezr (token savings)](pre-event/03-rtk-squeezr-optional.md) | 10 min | Optional |
-| [4. Context7 (live library docs)](pre-event/04-context7-optional.md) | 3 min | Optional |
-| [5. Troubleshooting](pre-event/99-troubleshooting.md) | as needed | reference |
+Desde la carpeta/proyecto donde hayas ejecutado `ai-eng install`, esto tiene que funcionar antes del evento:
 
-### 2. [Workshop](workshop/) — what we will do together (45 minutes)
+```bash
+ai-eng version
+ai-eng doctor
+```
 
-A step-by-step path you can follow live, on stream, or solo. Every step has the exact commands and an expected output snippet so you can confirm you are on track.
+Y en tu IDE de IA, abierto con esa misma carpeta como raíz, el comando:
 
-| Step | Skill | Time |
-|------|-------|------|
-| [0. Warm-up + dashboard](workshop/00-warmup.md) | `/ai-start` | 3 min |
-| [1. Explore your codebase](workshop/01-explore.md) | `/ai-explore` | 5 min |
-| [2. Brainstorm the feature](workshop/02-brainstorm.md) | `/ai-brainstorm` | 7 min |
-| [3. Plan it out](workshop/03-plan.md) | `/ai-plan` | 7 min |
-| [4. Build with TDD](workshop/04-build.md) | `/ai-build` | 10 min |
-| [5. Open the PR](workshop/05-pr.md) | `/ai-pr` | 6 min |
-| [6. Multi-specialist review](workshop/06-review.md) | `/ai-review` | 5 min |
-| [7. Learn what you built](workshop/07-explain.md) | `/ai-explain` | 2 min |
-| **Total** | | **45 min** |
+```text
+/ai-start
+```
 
-## Resources
+Tiene que mostrar el dashboard de ai-engineering sin errores.
 
-- [Cheatsheet](resources/cheatsheet.md) — one-page command reference
-- [Starter project](resources/starter/) — the tiny CLI we will modify together
-- [Exercise spec](resources/exercise-spec-example.md) — the feature we will build, written as a real ai-engineering spec
+## Por qué hay un playground en el pre-evento
 
-## What is ai-engineering?
+El material que antes estaba en `workshop/` ahora vive en [`pre-event/playground/`](pre-event/playground/). Úsalo para practicar la cadena canónica:
 
-`ai-engineering` is an MIT-licensed framework that turns any repository into a governed AI workspace: policies, skills, agents, runbooks, and specs as versioned files. No hosted control plane. One canonical chain across Claude Code, GitHub Copilot, OpenAI Codex, Gemini CLI, OpenCode, Cursor, and Antigravity.
+```text
+/ai-start → /ai-explore → /ai-brainstorm → /ai-plan → /ai-build → /ai-pr → /ai-review → /ai-explain
+```
 
-See the [upstream repo](https://github.com/arcasilesgroup/ai-engineering) for the full framework.
+El workshop real del 25 de mayo no será este playground. Será una sesión con problemas reales de proyecto y un reto final basado en **La Batalla de las IAs**.
 
-## Who runs this workshop?
+## Qué es ai-engineering
 
-[Arcasiles Group](https://github.com/arcasilesgroup) — we design and produce experiences that connect technology, culture, and community. This workshop is one of the free events we run for engineers who want to ship AI-assisted code without losing control of their codebase.
+[`ai-engineering`](https://github.com/arcasilesgroup/ai-engineering) convierte un repositorio en un workspace gobernado para trabajar con agentes de IA: políticas, skills, agentes, runbooks y specs versionados junto al código. No hay panel SaaS ni lock-in de proveedor. La misma cadena funciona sobre Claude Code, GitHub Copilot, OpenAI Codex, Gemini CLI, OpenCode, Cursor y Antigravity.
 
-## License
+## Quién organiza
 
-[MIT](LICENSE). Fork it, run it at your meet-up, send the diff back. Pull requests welcome.
+[Arcasiles Group](https://github.com/arcasilesgroup) — diseñamos experiencias que conectan tecnología, cultura y comunidad. Este workshop es para equipos que quieren usar IA para construir software sin perder control técnico.
+
+## Licencia
+
+[MIT](LICENSE). Puedes forkearlo, adaptarlo y enviar mejoras.

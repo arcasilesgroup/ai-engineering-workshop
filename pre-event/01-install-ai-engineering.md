@@ -1,186 +1,277 @@
-# 1. Install ai-engineering
+# 1. Instalar y verificar ai-engineering
 
-> **Time:** ~10 minutes • **Required:** Yes
+> **Tiempo:** ~15 minutos • **Obligatorio:** sí • **Verificado:** macOS + `uv` + PyPI/GitHub el 19 mayo 2026.
 
-`ai-engineering` is the open-source framework we are teaching. It ships as a Python tool called `ai-eng` that you install once globally, then run inside any project to make that project a governed AI workspace.
+`ai-engineering` es el framework del evento. Se instala como un CLI llamado `ai-eng`. Lo instalas una vez en tu máquina y luego lo aplicas a cada proyecto con `ai-eng install`.
 
-This guide installs the framework from source (the current, dogfood-tested path). It works on macOS, Linux, and Windows.
+Los enlaces oficiales de cada herramienta están en [0. Enlaces oficiales](00-official-tooling-links.md). Esta página es la ruta copy/paste para llegar funcionando.
 
 ---
 
-## Step 1.1 — Install the prerequisites
+## 1.1 — Instala herramientas base
 
-You need three things on your `PATH`:
-
-- **Git** 2.30+
-- **Python 3.11+**
-- **uv** (the Python package manager that drives the install)
+Elige tu sistema operativo. Si ya tienes una herramienta, el comando la actualizará o la dejará como está.
 
 ### macOS
 
 ```bash
-# git + python (skip if already installed)
-brew install git python@3.12
+# 1) Homebrew si no lo tienes: https://brew.sh/
+# 2) Git, GitHub CLI y uv
+brew install git gh uv
 
-# uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-exec "$SHELL" -l         # reload shell so uv is on PATH
+# 3) Login en GitHub para poder crear forks/PRs
+gh auth login
+
+# 4) Verificación
+git --version
+gh auth status
+uv --version
 ```
 
-### Linux (Debian / Ubuntu)
+### Linux — Debian / Ubuntu
 
 ```bash
-sudo apt update && sudo apt install -y git python3.12 python3.12-venv
+sudo apt update
+sudo apt install -y git curl ca-certificates wget
+
+# GitHub CLI: paquete oficial de cli.github.com
+sudo mkdir -p -m 755 /etc/apt/keyrings
+wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+  | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null
+sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+  | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+sudo apt update
+sudo apt install -y gh
+
+# uv: instalador oficial de Astral
 curl -LsSf https://astral.sh/uv/install.sh | sh
 exec "$SHELL" -l
+
+# Login + verificación
+gh auth login
+git --version
+gh auth status
+uv --version
 ```
 
-### Windows (PowerShell)
+### Windows — PowerShell
 
 ```powershell
-winget install --id Git.Git
-winget install --id Python.Python.3.12
+winget install --id Git.Git -e
+winget install --id GitHub.cli -e
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
 
-> **Recommended:** on Windows, use **WSL2** with Ubuntu 22.04+. The framework's git hooks, the workshop scripts, and the AI coding IDEs all have a smoother Linux story than native Windows.
-
-### Verify
-
-```bash
-git --version       # >= 2.30
-python --version    # >= 3.11
-uv --version        # any current version
+# Cierra y abre PowerShell si uv no aparece todavía.
+gh auth login
+git --version
+gh auth status
+uv --version
 ```
 
 ---
 
-## Step 1.2 — Clone the framework and install `ai-eng` globally
+## 1.2 — Instala ai-engineering
+
+Tienes dos rutas válidas. Usa **PyPI** si quieres la última release publicada. Usa **GitHub** si quieres la última versión disponible en `main`.
+
+### Opción A — PyPI, última release publicada
+
+macOS / Linux:
 
 ```bash
-git clone https://github.com/arcasilesgroup/ai-engineering.git
-cd ai-engineering
-bash scripts/dev-setup.sh        # Linux / macOS / WSL
-# or:
-pwsh scripts/dev-setup.ps1       # native PowerShell on Windows
-```
-
-`dev-setup` does one thing: `uv tool install --editable . --force`. This puts the `ai-eng` CLI at `$HOME/.local/bin/ai-eng` (Unix) or `$env:USERPROFILE\.local\bin\ai-eng` (Windows).
-
-If you see a warning that `ai-eng` is not on `PATH`, add the install directory to your shell profile:
-
-```bash
-# bash / zsh
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+uv tool install --force ai-engineering
+uv tool update-shell
 exec "$SHELL" -l
 ```
 
+PowerShell:
+
 ```powershell
-# PowerShell — current user
-[Environment]::SetEnvironmentVariable("Path", "$env:Path;$env:USERPROFILE\.local\bin", "User")
+uv tool install --force ai-engineering
+uv tool update-shell
+# Cierra y abre PowerShell si ai-eng no aparece todavía.
 ```
 
-### Verify
+### Opción B — GitHub, última versión de `main`
+
+macOS / Linux:
+
+```bash
+uv tool install --force 'git+https://github.com/arcasilesgroup/ai-engineering.git'
+uv tool update-shell
+exec "$SHELL" -l
+```
+
+PowerShell:
+
+```powershell
+uv tool install --force "git+https://github.com/arcasilesgroup/ai-engineering.git"
+uv tool update-shell
+# Cierra y abre PowerShell si ai-eng no aparece todavía.
+```
+
+### Verifica
 
 ```bash
 ai-eng version
-# expected: ai-eng 0.4.0 (or newer)
+```
+
+Salida esperada para el evento:
+
+```text
+ai-engineering 0.7.0
+```
+
+> Si Dachi indica una ruta concreta para el evento, usa esa.
+
+---
+
+## 1.3 — Instala un IDE/agente de IA
+
+Instala **uno**. La ruta principal del evento será Claude Code.
+
+### Opción A — Claude Code (principal)
+
+macOS / Linux:
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+exec "$SHELL" -l
+claude --version
+```
+
+Windows PowerShell:
+
+```powershell
+winget install Anthropic.ClaudeCode
+claude --version
+```
+
+### Opción B — OpenAI Codex
+
+```bash
+npm install -g @openai/codex
+codex --version
+```
+
+### Opción C — Gemini CLI
+
+```bash
+npm install -g @google/gemini-cli
+gemini --version
+```
+
+Si usas Cursor, OpenCode, GitHub Copilot o Antigravity, instala tu herramienta desde los enlaces oficiales de [00-official-tooling-links.md](00-official-tooling-links.md). Luego `ai-eng install` detectará tu entorno o te preguntará qué agente quieres configurar.
+
+---
+
+## 1.4 — Ve a la carpeta donde quieras probar ai-engineering
+
+`ai-eng install` se ejecuta **dentro del proyecto o carpeta que quieras gobernar con ai-engineering**.
+
+No lo ejecutes en este repo de documentación salvo que quieras modificar el workshop. Para practicar, ve a cualquier carpeta de prueba o proyecto propio:
+
+```bash
+cd /ruta/a/tu/proyecto-o-carpeta-de-prueba
+```
+
+PowerShell:
+
+```powershell
+Set-Location "C:/ruta/a/tu/proyecto-o-carpeta-de-prueba"
+```
+
+Antes de instalar, confirma dónde estás:
+
+```bash
+pwd
 ```
 
 ---
 
-## Step 1.3 — Bootstrap a project
+## 1.5 — Ejecuta `ai-eng install`
 
-The framework is now globally available. To turn a *specific* project into a governed AI workspace you run `ai-eng install` from inside it.
-
-For the workshop you will use a fresh starter project (see [`resources/starter/`](../resources/starter/) in this repo). Clone it down and bootstrap:
+Dentro de esa carpeta, ejecuta:
 
 ```bash
-# pick any working directory you like
-git clone https://github.com/arcasilesgroup/ai-engineering-workshop.git
-cd ai-engineering-workshop/resources/starter
-ai-eng install .
-```
-
-The installer:
-
-1. Detects which AI IDEs you have already configured (looks for `.claude/`, `.codex/`, `.gemini/`, `.github/`, `.opencode/`, `.cursor/`, `.agent/`).
-2. Asks you a single multi-select question if none are detected: **"Which AI Provider / IDE surfaces do you use?"**
-3. Copies the matching skill, agent, and hook trees into your project.
-4. Installs git hooks (`pre-commit`, `commit-msg`, `pre-push`) wired to `ai-eng gate`.
-5. Auto-installs the deterministic tools the gates need: `gitleaks`, `semgrep`, `jq`, `opa`, `ruff`, `ty`, `pip-audit`, `pytest`.
-6. Initializes `.ai-engineering/state/state.db` (SQLite) and `manifest.yml`.
-
-**For the workshop, select `claude-code` when prompted** (you can multi-select more if you want). The walkthrough uses Claude Code commands.
-
----
-
-## Step 1.4 — Health check
-
-```bash
+ai-eng install
 ai-eng doctor
 ```
 
-You should see green check marks across **prereqs**, **tools**, **state**, **hooks**, and **surfaces**. If any line is red, run:
+`ai-eng install` detectará tu entorno y preparará el proyecto. Si necesita elegir IDE/agente, sigue el prompt interactivo y selecciona el que vayas a usar.
+
+`ai-eng install` creará, dentro de esa carpeta:
+
+- `.ai-engineering/` — configuración, estado, specs y scripts.
+- `.claude/`, `.codex/`, `.gemini/`, etc. — skills/agentes para tu IDE.
+- `.git/hooks/` — gates de seguridad y calidad.
+
+Si `doctor` muestra algún error reparable:
 
 ```bash
 ai-eng doctor --fix
 ```
 
-`doctor --fix` is interactive — it shows you what it wants to do and asks before doing it.
-
 ---
 
-## Step 1.5 — Open your IDE and run `/ai-start`
+## 1.6 — Abre tu IDE en esa misma carpeta y prueba `/ai-start`
 
-Open Claude Code (or whichever IDE you picked) inside the starter project. Then:
+Los comandos `/ai-start`, `/ai-brainstorm`, `/ai-plan`, etc. se escriben **en el chat de tu IDE/agente de IA**, no en la terminal normal.
 
+Abre tu agente con la misma carpeta donde ejecutaste `ai-eng install`.
+
+Ejemplo con Claude Code:
+
+```bash
+cd /ruta/a/tu/proyecto-o-carpeta-de-prueba
+claude
 ```
+
+O abre esa carpeta desde Cursor / Codex / Gemini / OpenCode.
+
+Dentro del chat del agente, ejecuta:
+
+```text
 /ai-start
 ```
 
-You should see a dashboard with:
+El dashboard debe mostrar:
 
-- Current branch
-- Active spec (none yet — that is fine)
-- Board state
-- A "next action" pointer
+- Rama actual.
+- Spec activo: ninguno todavía.
+- Estado del plan: ninguno todavía.
+- Siguiente acción recomendada.
 
-**That is your finish line for pre-event setup.** If `/ai-start` renders cleanly, you are ready for the workshop.
+**Ese es el finish line del pre-evento.** Si `/ai-start` aparece limpio dentro de tu carpeta de prueba, estás listo para el playground.
 
 ---
 
-## What just happened (quick mental model)
+## 1.7 — Primeros pasos para jugar
 
+Con el agente abierto en tu carpeta de prueba, sigue esta secuencia:
+
+```text
+/ai-start
+/ai-explore "Map this project. What files exist, what is implemented, and what is safe to change?"
+/ai-brainstorm "I want to make a small, safe improvement in this project. Help me define an MVP spec before changing code."
+/ai-plan
+/ai-build
+/ai-review
+/ai-explain "What changed and why?"
 ```
-Your laptop                           Your project
-─────────                             ──────────────────
-$HOME/.local/bin/ai-eng     ───→      .ai-engineering/        ← governance root
-(global CLI, one install)             .claude/ (or other IDE)  ← skills + agents
-                                      .git/hooks/              ← gates wired
-                                      CONSTITUTION.md          ← project identity
-                                      CLAUDE.md / AGENTS.md    ← AI rulebook
+
+## Modelo mental rápido
+
+```text
+Tu máquina                         Cada proyecto gobernado
+──────────                         ───────────────────────
+ai-eng (global)      ───────→      .ai-engineering/   políticas + estado
+uv / gh / git                      .claude/ o .codex/ skills + agentes
+IDE de IA                          .git/hooks/        gates de seguridad
 ```
 
-Every project you want to govern gets its own `ai-eng install .`. The framework itself stays singular and global.
+## Siguiente paso
 
----
-
-## Common issues
-
-See [99-troubleshooting.md](99-troubleshooting.md) for:
-
-- `ai-eng: command not found`
-- `uv not on PATH`
-- Hooks not firing on commit
-- Surface autodetection picked the wrong IDE
-- `state.db` is locked
-
----
-
-## Next
-
-- (Optional) [2. Engram](02-engram-optional.md) — adds cross-session memory.
-- (Optional) [3. RTK + Squeezr](03-rtk-squeezr-optional.md) — saves 60–90% of tokens on dev operations.
-- (Optional) [4. Context7](04-context7-optional.md) — live, version-accurate library docs as an MCP.
-- (When ready) [The workshop](../workshop/) — what we will do together for 45 minutes.
+- [Playground pre-evento](playground/) si quieres practicar la cadena completa.
+- [Troubleshooting](99-troubleshooting.md) si algo falla.
