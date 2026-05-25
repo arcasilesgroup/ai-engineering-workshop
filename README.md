@@ -1,6 +1,6 @@
 # ai-engineering Workshop
 
-> Preparación pública del evento de **ai-engineering**. Hasta el **lunes 25 de mayo de 2026** este repositorio solo debe enseñar el **pre-evento**: instalación, verificación y un playground opcional para llegar con el entorno funcionando.
+> Material público del evento de **ai-engineering**: pre-evento, playground y workshop completo.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![ai-engineering](https://img.shields.io/badge/built%20on-ai--engineering-7c3aed.svg)](https://github.com/arcasilesgroup/ai-engineering)
@@ -12,7 +12,7 @@
 | Ahora → 24 mayo 2026 | Pre-evento + playground de práctica | Casos reales del workshop |
 | 25 mayo 2026 | Workshop completo con proyectos reales | — |
 
-El directorio [`workshop/`](workshop/) queda como placeholder público hasta el día del evento. Los materiales reales se publicarán el **25 de mayo de 2026**.
+El directorio [`workshop/`](workshop/) ya está en vivo con el contenido completo del workshop.
 
 ## Qué tienes que hacer antes del evento
 
@@ -48,7 +48,7 @@ Tiene que mostrar el dashboard de ai-engineering sin errores.
 
 ## Playground opcional
 
-[`pre-event/playground/`](pre-event/playground/) es una práctica corta para comprobar que tu entorno y tu agente funcionan antes del evento. El material completo del workshop se publicará el **25 de mayo de 2026**.
+[`pre-event/playground/`](pre-event/playground/) es una práctica corta para comprobar que tu entorno y tu agente funcionan antes del evento o antes de entrar al bloque principal del workshop.
 
 ## Qué es ai-engineering
 

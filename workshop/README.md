@@ -1,11 +1,17 @@
-# Workshop — publicación el 25 de mayo de 2026
+# Workshop — material en vivo
 
-> Esta parte del repo queda en embargo hasta el **lunes 25 de mayo de 2026**.
+> El material completo del workshop ya está publicado.
 
-Mientras tanto, prepara tu entorno con:
+## Contenido principal
+
+- [Blueprint — Workshop con problemas reales](00-real-project-workshop-blueprint.md)
+- [Ejercicio final — La Batalla de las IAs](99-la-batalla-de-las-ias.md)
+- [La Batalla de las IAs — carpeta del reto](la-batalla-de-las-ias/)
+
+## Antes de empezar
+
+Si no has preparado entorno todavía, completa primero:
 
 - [Pre-event setup](../pre-event/)
 - [Playground pre-evento](../pre-event/playground/)
 - [Troubleshooting](../pre-event/99-troubleshooting.md)
-
-El material completo del workshop se publicará aquí el día del evento.
