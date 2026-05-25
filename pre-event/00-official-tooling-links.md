@@ -2,7 +2,7 @@
 
 > Usa esta página para comprobar la fuente oficial. Los comandos copy/paste verificados para el evento están en [1. Instalar y verificar ai-engineering](01-install-ai-engineering.md).
 
-Última revisión de enlaces: **19 mayo 2026**.
+Última revisión de enlaces: **25 mayo 2026**.
 
 ## Herramientas base
 
@@ -21,7 +21,7 @@
 |---|---|---|---|
 | Claude Code | Ruta principal del evento | [Claude Code product](https://www.claude.com/product/claude-code) | [Claude Code docs](https://code.claude.com/docs/en/overview) |
 | OpenAI Codex | Si trabajas desde Codex CLI/Desktop | [GitHub: openai/codex](https://github.com/openai/codex) | [Codex CLI getting started](https://help.openai.com/en/articles/11096431) |
-| Gemini CLI | Si usas el agente de Google en terminal | [GitHub: google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | [Gemini CLI get started](https://github.com/google-gemini/gemini-cli/blob/main/docs/get-started/index.md) |
+| GitHub Copilot | Si trabajas en VS Code con Copilot Chat/Agent | [GitHub Copilot](https://github.com/features/copilot) | [GitHub Copilot docs](https://docs.github.com/en/copilot) |
 | Cursor | Si usas Cursor Agent / Cursor CLI | [Cursor docs](https://docs.cursor.com/) | [Cursor CLI installation](https://docs.cursor.com/en/cli/installation) |
 | OpenCode | Si prefieres agente open-source por terminal | [OpenCode docs](https://dev.opencode.ai/docs/) | [OpenCode CLI docs](https://dev.opencode.ai/docs/cli/) |
 | Antigravity | Si usas el IDE agéntico de Google | [Antigravity](https://antigravity.google/) | [Antigravity download](https://antigravity.google/download) |

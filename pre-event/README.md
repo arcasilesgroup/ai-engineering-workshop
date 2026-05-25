@@ -19,7 +19,7 @@
 
 - macOS, Linux o Windows. `ai-engineering` está pensado para funcionar cross-OS; usa la terminal normal de tu sistema.
 - Git y GitHub CLI (`gh auth status` funcionando).
-- Un IDE/agente de IA. El evento usará **Claude Code** como ruta principal; también funcionan OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode, Cursor y Antigravity.
+- Un IDE/agente de IA. El evento usará **Claude Code** como ruta principal; también funcionan OpenAI Codex, GitHub Copilot, OpenCode, Cursor y Antigravity.
 - `uv` para instalar `ai-eng` y las herramientas Python necesarias.
 - Una cuenta de GitHub capaz de crear forks y PRs.
 

@@ -23,7 +23,6 @@ Thumbs.db
 
 # ai-engineering runtime (gitignored per upstream defaults)
 .ai-engineering/runtime/
-.ai-engineering/state/state.db
 
 # Workshop scratch
 scratch/

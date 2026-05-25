@@ -2,7 +2,7 @@
 
 > **Tiempo:** ~5–10 minutos • **Obligatorio:** no • **Oficial:** [agentsview.io](https://www.agentsview.io/)
 
-**AgentsView** es una app local-first para explorar, buscar y analizar sesiones pasadas de agentes de coding: Claude Code, Codex, Gemini, Copilot, Cursor, OpenCode y otros. Sirve para ver qué hizo el agente, buscar conversaciones antiguas y consultar uso/coste de tokens.
+**AgentsView** es una app local-first para explorar, buscar y analizar sesiones pasadas de agentes de coding: Claude Code, Codex, GitHub Copilot, Cursor, OpenCode y otros. Sirve para ver qué hizo el agente, buscar conversaciones antiguas y consultar uso/coste de tokens.
 
 ## Por qué lo usamos
 
@@ -59,7 +59,7 @@ agentsview stats         # resumen de base local
 ## Verificar
 
 1. Abre AgentsView.
-2. Comprueba que aparecen sesiones de Claude/Codex/Gemini/etc.
+2. Comprueba que aparecen sesiones de Claude/Codex/Copilot/etc.
 3. Si no aparece nada, ejecuta al menos una sesión real de tu agente y luego:
    ```bash
    agentsview sync

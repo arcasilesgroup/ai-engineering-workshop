@@ -52,7 +52,7 @@ Tiene que mostrar el dashboard de ai-engineering sin errores.
 
 ## Qué es ai-engineering
 
-[`ai-engineering`](https://github.com/arcasilesgroup/ai-engineering) convierte un repositorio en un workspace gobernado para trabajar con agentes de IA: políticas, skills, agentes, runbooks y specs versionados junto al código. No hay panel SaaS ni lock-in de proveedor. La misma cadena funciona sobre Claude Code, GitHub Copilot, OpenAI Codex, Gemini CLI, OpenCode, Cursor y Antigravity.
+[`ai-engineering`](https://github.com/arcasilesgroup/ai-engineering) convierte un repositorio en un workspace gobernado para trabajar con agentes de IA: políticas, skills, agentes, runbooks y specs versionados junto al código. No hay panel SaaS ni lock-in de proveedor. La misma cadena funciona sobre Claude Code, GitHub Copilot, OpenAI Codex, OpenCode, Cursor y Antigravity.
 
 ## Quién organiza
 

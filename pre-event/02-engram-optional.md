@@ -34,12 +34,6 @@ Codex:
 engram setup codex
 ```
 
-Gemini CLI:
-
-```bash
-engram setup gemini-cli
-```
-
 OpenCode:
 
 ```bash

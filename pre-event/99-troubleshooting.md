@@ -45,7 +45,7 @@ Re-run the installer from the same folder and select the IDE/agent you actually 
 ai-eng install
 ```
 
-Supported IDEs/agents include Claude Code, OpenAI Codex, Gemini CLI, GitHub Copilot, OpenCode, Cursor and Antigravity.
+Supported IDEs/agents include Claude Code, OpenAI Codex, GitHub Copilot, OpenCode, Cursor and Antigravity.
 
 ---
 
@@ -70,20 +70,6 @@ git config --get core.hooksPath
 # if this prints anything other than empty, that's your problem
 git config --unset core.hooksPath
 ```
-
----
-
-## `state.db is locked`
-
-Another process (an editor, an aborted `ai-eng` run) has the SQLite file open.
-
-```bash
-# find the holder
-lsof | grep state.db          # macOS / Linux
-# kill it, or close the editor that has it open
-```
-
-Then retry the command.
 
 ---
 
@@ -134,7 +120,7 @@ The skills are present under `.claude/skills/ai-*/SKILL.md` but Claude Code has 
 
 ## "I do not have Claude Code, I have $OTHER_IDE"
 
-The framework supports Claude Code, GitHub Copilot, OpenAI Codex, Gemini CLI, OpenCode, Cursor and Antigravity. Run `ai-eng install` from your project folder and select your IDE/agent when prompted.
+The framework supports Claude Code, GitHub Copilot, OpenAI Codex, OpenCode, Cursor and Antigravity. Run `ai-eng install` from your project folder and select your IDE/agent when prompted.
 
 The pre-event playground uses Claude Code slash syntax (`/ai-brainstorm`, etc.). The same ai-engineering skills are generated for each supported IDE.
 
@@ -145,7 +131,7 @@ The pre-event playground uses Claude Code slash syntax (`/ai-brainstorm`, etc.).
 You installed the binary but did not run the per-IDE setup. Run:
 
 ```bash
-engram setup claude-code         # or codex, gemini-cli
+engram setup claude-code         # or codex
 ```
 
 Then restart your IDE.
@@ -180,7 +166,7 @@ If you already use Squeezr and understand the trade-offs, follow its official do
 
 AgentsView only shows sessions that exist on your machine and that it can discover. Try this:
 
-1. Run at least one real session in Claude Code, Codex, Gemini, Cursor, etc.
+1. Run at least one real session in Claude Code, Codex, GitHub Copilot, Cursor, etc.
 2. Sync manually:
    ```bash
    agentsview sync
@@ -210,8 +196,9 @@ uv tool uninstall ai-engineering
 rm -rf /path/to/ai-engineering
 
 # remove a per-project install
-rm -rf .ai-engineering .claude .codex .gemini .opencode .cursor
-git checkout -- .git/hooks/         # if your project uses gitleaks/etc, restore originals
+rm -rf .ai-engineering .agents .claude .codex .opencode .cursor
+rm -f AGENTS.md CLAUDE.md .github/copilot-instructions.md
+git restore .git/hooks/             # if your project uses gitleaks/etc, restore originals
 ```
 
 Then re-run [pre-event step 1](01-install-ai-engineering.md) from the top.

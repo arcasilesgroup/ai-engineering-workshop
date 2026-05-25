@@ -1,6 +1,6 @@
 # 1. Instalar y verificar ai-engineering
 
-> **Tiempo:** ~15 minutos • **Obligatorio:** sí • **Verificado:** macOS + `uv` + PyPI/GitHub el 19 mayo 2026.
+> **Tiempo:** ~15 minutos • **Obligatorio:** sí • **Verificado:** macOS + `uv` + PyPI/GitHub el 25 mayo 2026.
 
 `ai-engineering` es el framework del evento. Se instala como un CLI llamado `ai-eng`. Lo instalas una vez en tu máquina y luego lo aplicas a cada proyecto con `ai-eng install`.
 
@@ -117,13 +117,13 @@ uv tool update-shell
 ai-eng version
 ```
 
-Salida esperada para el evento:
+Salida esperada hoy si instalas desde PyPI:
 
 ```text
-ai-engineering 0.7.0
+ai-engineering 0.8.1
 ```
 
-> Si Dachi indica una ruta concreta para el evento, usa esa.
+> Si instalas desde GitHub `main`, la versión puede variar. Lo importante es que `ai-eng version` responda sin error.
 
 ---
 
@@ -155,14 +155,7 @@ npm install -g @openai/codex
 codex --version
 ```
 
-### Opción C — Gemini CLI
-
-```bash
-npm install -g @google/gemini-cli
-gemini --version
-```
-
-Si usas Cursor, OpenCode, GitHub Copilot o Antigravity, instala tu herramienta desde los enlaces oficiales de [00-official-tooling-links.md](00-official-tooling-links.md). Luego `ai-eng install` detectará tu entorno o te preguntará qué agente quieres configurar.
+Si usas GitHub Copilot, Cursor, OpenCode o Antigravity, instala tu herramienta desde los enlaces oficiales de [00-official-tooling-links.md](00-official-tooling-links.md). Luego `ai-eng install` detectará tu entorno o te preguntará qué agente quieres configurar.
 
 ---
 
@@ -204,7 +197,7 @@ ai-eng doctor
 `ai-eng install` creará, dentro de esa carpeta:
 
 - `.ai-engineering/` — configuración, estado, specs y scripts.
-- `.claude/`, `.codex/`, `.gemini/`, etc. — skills/agentes para tu IDE.
+- `CLAUDE.md`, `AGENTS.md` y las superficies de tu IDE — por ejemplo `.claude/`, `.codex/`, `.agents/`, `.opencode/` o `.github/copilot-instructions.md`.
 - `.git/hooks/` — gates de seguridad y calidad.
 
 Si `doctor` muestra algún error reparable:
@@ -228,7 +221,7 @@ cd /ruta/a/tu/proyecto-o-carpeta-de-prueba
 claude
 ```
 
-O abre esa carpeta desde Cursor / Codex / Gemini / OpenCode.
+O abre esa carpeta desde VS Code con GitHub Copilot, Cursor, Codex, OpenCode o Antigravity.
 
 Dentro del chat del agente, ejecuta:
 
@@ -266,9 +259,10 @@ Con el agente abierto en tu carpeta de prueba, sigue esta secuencia:
 ```text
 Tu máquina                         Cada proyecto gobernado
 ──────────                         ───────────────────────
-ai-eng (global)      ───────→      .ai-engineering/   políticas + estado
-uv / gh / git                      .claude/ o .codex/ skills + agentes
-IDE de IA                          .git/hooks/        gates de seguridad
+ai-eng (global)      ───────→      .ai-engineering/             políticas + estado
+uv / gh / git                      CLAUDE.md / AGENTS.md        instrucciones base
+IDE de IA                          .claude/ / .codex/ / ...     skills + superficies
+                                   .git/hooks/                  gates de seguridad
 ```
 
 ## Siguiente paso

@@ -17,7 +17,7 @@ npx ctx7 setup
 Cuando pregunte:
 
 1. **How should your agent access Context7?** → elige **MCP server**.
-2. **Which agents do you want to set up?** → selecciona los que uses: Claude Code, Cursor, OpenCode, Codex, Gemini CLI.
+2. **Which agents do you want to set up?** → selecciona los que uses y que te ofrezca el asistente. Claude Code, Cursor y OpenCode son los caminos documentados explícitamente upstream hoy.
 3. Se abrirá el navegador para login. Completa OAuth.
 4. Espera a ver `Context7 setup complete`.
 
@@ -34,8 +34,6 @@ Ejemplo de archivos que puede tocar:
 | Claude Code | `~/.claude.json`, `~/.claude/rules/context7.md`, `~/.claude/skills/context7-mcp/` |
 | Cursor | `~/.cursor/mcp.json`, `~/.cursor/rules/context7.mdc`, `~/.cursor/skills/context7-mcp/` |
 | OpenCode | `~/.config/opencode/opencode.json`, `~/.config/opencode/AGENTS.md` |
-| Codex | `~/.codex/config.toml`, `~/.codex/AGENTS.md` |
-| Gemini CLI | `~/.gemini/settings.json`, `~/.gemini/GEMINI.md` |
 
 ## Setup para un solo agente
 
